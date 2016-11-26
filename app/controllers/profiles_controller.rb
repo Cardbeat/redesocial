@@ -33,6 +33,13 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    if Profile.exists?(id: current_user)
+      @profile = Profile.find(params[:id])
+    else
+      @profile= Profile.create(id: current_user)
+    end
+      
   end
 
   private
