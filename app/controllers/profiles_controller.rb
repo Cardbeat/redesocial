@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  def index
+    @profiles = Profile.order(:username)
+  end
+
   def edit
     @profile = Profile.find(params[:id])
   end
@@ -8,10 +12,11 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @user = User.find(params[:id], current_user)
+    @profile = @user.build_profile(profile_params)
     if @profile.save
       flash[:success] = "Perfil criado com sucesso!"
-      redirect_to root_path
+      redirect_to profiles_path
     else
       render 'new'
     end
@@ -30,7 +35,9 @@ class ProfilesController < ApplicationController
   def show
   end
 
+  private
+
   def profile_params
-    params.require(:profile).permit(:username, :lastname, :subnick)
+    params.require(:profile).permit(:username, :lastname, :subnick, :user_id)
   end
 end
