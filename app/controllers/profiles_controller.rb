@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
     else
       @profile= Profile.create(id: current_user)
     end
-      
+
   end
 
   private
