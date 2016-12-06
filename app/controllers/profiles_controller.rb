@@ -33,7 +33,9 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user)
+    @post = @user.posts.build
+    @posts = @user.posts.all
     if Profile.exists?(id: current_user)
       @profile = Profile.find(params[:id])
     else
