@@ -1,0 +1,13 @@
+<div>
+  <% @posts.each do |p| %>
+  <%= p.body %>
+  <% end %>
+
+<%= simple_form_for @post do |f| %>
+
+    <%= f.input :body %>
+
+    <%= f.button :submit %>
+
+    <% end %>
+</div>
