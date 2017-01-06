@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/index'
 
-  get 'users/show'
-
-  get 'users/destroy'
+  resources :friendships, only: [:create, :update, :destroy]
 
   resources :profiles, :posts
   devise_for :users
