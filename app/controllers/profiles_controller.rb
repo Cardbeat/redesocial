@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   def index
-    @profiles = Profile.order(:username)
+    @users = User.order(:username)
   end
 
   def edit
